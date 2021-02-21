@@ -84,4 +84,22 @@ curl -X GET http://localhost:8000/randomInt
 
 ```
 go get github.com/julienschmidt/httprouter
+go run httprouterdemo.go
+curl -X GET http://localhost:8000/api/v1/go-version
+curl -X GET http://localhost:8000/api/v1/show-file/latin.txt
+```
+
+# Host Static File Server
+
+```
+go run fileserver.go
+curl -X GET http://localhost:8000/static/latin.txt
+```
+
+# Gorilla Mux
+
+```
+go get github.com/gorilla/mux
+go run muxRouter.go
+curl -X GET http://localhost:8000/articles/books/123
 ```
