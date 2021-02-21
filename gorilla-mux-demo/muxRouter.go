@@ -18,6 +18,10 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/articles/{category}/{id:[0-9]+}", ArticleHandler)
+	r.Host("{subdomain}:8000").
+		Path("/articles/{category}/{id:[0-9]+}").
+		HandlerFunc(ArticleHandler).
+		Name("article")
 
 	srv := &http.Server{
 		Handler:      r,
@@ -25,6 +29,10 @@ func main() {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	log.Printf("USAGE: curl -X GET http://localhost:8000/articles/books/123")
+	url, _ := r.Get("article").URL(
+		"subdomain", "localhost",
+		"category", "technology",
+		"id", "42")
+	log.Println(url)
 	log.Fatal(srv.ListenAndServe())
 }
