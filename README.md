@@ -37,5 +37,15 @@ curl -X GET "http://localhost:8000/roman_number/12"
 curl -X GET "http://localhost:8000/random_resource/3" # Invalid resource
 ```
 
+# Git
+
+```
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:dliulabs/romanservice.git
+git push -u origin main
+```
 
 
