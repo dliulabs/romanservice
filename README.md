@@ -48,4 +48,40 @@ git remote add origin git@github.com:dliulabs/romanservice.git
 git push -u origin main
 ```
 
+# Supervisor
 
+```
+brew reinstall supervisor
+brew services start supervisor -v
+ls /usr/local/homebrew/etc/supervisord.conf
+ls /usr/local/homebrew/etc/supervisor.d/*.ini
+sudo cp /Users/David/go/src/romanservice/goproject.conf /usr/local/homebrew/etc/supervisor.d/
+```
+
+# Basic HTTP Handler
+
+```
+cd basichandler
+go run basichandler.go
+
+curl -X GET http://localhost:8000/hello
+```
+
+# CustomServeMux
+
+```
+cd customservemux
+go run customMux.go
+
+curl -X GET http://localhost:8000
+curl -X GET http://localhost:8000/randomFloat
+curl -X GET http://localhost:8000/randomInt  
+```
+
+# Using httprouter
+
+## Install
+
+```
+go get github.com/julienschmidt/httprouter
+```
